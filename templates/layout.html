@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %} | {{ name }}</title>
+        <meta name="author" content="{{ name }}" />
+        <meta name="description" content="Hello World" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script">
+
+        <style>
+            body {
+                font-family: Helvetica, sans-serif;
+            }
+
+            .hobby-list {
+                border: 2px double black;
+                font-family: 'Dancing Script', cursive, sans-serif;
+                font-size: 2rem;
+                padding: 2rem;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            .projects {
+                border: 1px dashed black;
+            }
+
+            .projects li {
+                margin-top: 2rem;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+            <ul>
+                <a href="/">
+                    <li>about</li>
+                </a>
+                <a href="/projects">
+                    <li>projects</li>
+                </a>
+                <a href="/contact">
+                    <li>contact</li>
+                </a>
+            </ul>
+        </nav>
+       {% block content %}{% endblock %}
+    </body>
+</html>
