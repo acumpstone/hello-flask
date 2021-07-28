@@ -2,5 +2,33 @@
 {% block title %}Contact{% endblock %}
 {% block content %}
 <h1>Contact</h1>
-<p>Sea bunnies rule.</p>
+
+<form
+  action="{{ api }}"
+  method="POST"
+>
+    <div>
+        <label>
+            Your name:
+            <input type="text" name="name" placeholder="Name">
+        </label>
+    </div>
+    <div>
+        <label>
+            Your email:
+            <input type="email" name="_replyto" placeholder="Email">
+        </label>
+    </div>
+    <div>
+        <label>
+            Your message:
+            <textarea name="message" placeholder="Message" rows="6" cols="26"></textarea>
+        </label>
+    </div>
+
+  <!-- your other form fields go here -->
+
+  <button type="submit">Send</button>
+</form>
+
 {% endblock %}
