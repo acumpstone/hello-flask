@@ -5,9 +5,9 @@
 
 <img src="{{ url_for('static', filename='bunny.jpg') }}" />
 
-<ul class="hobby-list">
-    {% for hobby in list_of_hobbies %}
-        <li>{{ hobby }}</li>
+<ul class="items-list">
+    {% for item in list_of_items %}
+        <li>{{ item }}</li>
     {% endfor %}
 </ul>
 

@@ -4,4 +4,12 @@
 
 <h1>Blog</h1>
 
+<ul>
+{% for post in blog_posts %}
+    <a href="/blog/{{ post['name'] }}">
+        <li>{{ post["name"] }}</li>
+    </a>
+{% endfor %}
+</ul>
+
 {% endblock %}
