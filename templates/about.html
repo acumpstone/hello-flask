@@ -6,8 +6,8 @@
 <img src="{{ url_for('static', filename='bunny.jpg') }}" />
 
 <ul class="items-list">
-    {% for item in list_of_items %}
-        <li>{{ item }}</li>
+    {% for anime in list_of_anime %}
+        <li>{{ anime[0] }}</li>
     {% endfor %}
 </ul>
 

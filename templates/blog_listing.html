@@ -7,7 +7,7 @@
 <ul>
 {% for post in blog_posts %}
     <a href="/blog/{{ post['name'] }}">
-        <li>{{ post["name"] }}</li>
+        <li>{{ post["name"] }} - {{ post["date"].strftime("%B, %d, %Y") }}</li>
     </a>
 {% endfor %}
 </ul>

@@ -6,8 +6,24 @@ from flask import Flask, render_template
 import requests
 import decouple
 import markdown
+import sqlite3
 
-# time stamp: 33:00
+# time stamp: 33:30
+
+db_connection = sqlite3.connect("./database.db")
+
+db_cursor = db_connection.cursor()
+db_cursor.execute(
+    """
+CREATE TABLE IF NOT EXISTS anime (
+    name TEXT,
+    PRIMARY KEY (name)
+)
+"""
+)
+db_cursor.close()
+db_connection.commit()
+
 
 name = "Alexis"
 
@@ -31,7 +47,8 @@ with os.scandir("blog") as it:
             html = markdown.markdown(post_data)
 
             blog_posts.append({
-                "name": entry.name,
+                "name": post_name,
+                "date": post_date,
                 "html": html
             })
 
@@ -48,15 +65,12 @@ for project in projects_from_github:
 
 app = Flask(__name__)
 
-list_of_items = {
-    "item1",
-    "item2",
-    "item3"
-}
-
 @app.route("/")
 def about_page():
-    return render_template("about.html", name=name, list_of_items=list_of_items)
+    db_cursor = sqlite3.connect("./database.db").cursor()
+    db_cursor.execute("SELECT * FROM anime")
+    list_of_anime = db_cursor.fetchall()
+    return render_template("about.html", name=name, list_of_anime=list_of_anime)
 
 @app.route("/blog")
 def blog_entry_page():
@@ -78,3 +92,14 @@ def projects_page():
 @app.route("/contact")
 def contact_page():
     return render_template("contact.html", name=name, api=contact)
+
+@app.route("/anime/add/<name>")
+def add_item_page(name):
+    db_connection = sqlite3.connect("./database.db")
+    db_cursor = db_connection.cursor()
+    db_cursor.execute(
+        "INSERT INTO anime VALUES (:name)",
+        {"name": name},
+    )
+    db_connection.commit()
+    return f"Added anime '{name}"
