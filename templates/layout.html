@@ -9,7 +9,17 @@
 
         <style>
             body {
+                padding-right: 0 0.75rem 1rem 0.75rem;
                 font-family: Helvetica, sans-serif;
+                background-color: #fffeef;
+            }
+
+            p {
+                color: #28281c;
+            }
+
+            a {
+                text-decoration: none;
             }
 
             .items-list {
@@ -20,7 +30,7 @@
             }
 
             img {
-                width: 100%;
+                width: 70%;
             }
 
             .projects {
@@ -30,11 +40,63 @@
             .projects li {
                 margin-top: 2rem;
             }
+
+            nav {
+                border-bottom: 2px solid black;
+                margin-bottom: 1.5rem;
+            }
+
+            nav p {
+                font-weight: bold;
+                display: inline-block;
+            }
+
+            nav ul {
+                float: right;
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            nav ul li {
+                display: inline-block;
+                margin-left: 1rem;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .about {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .anime-list {
+                margin-top: 2rem;
+                max-width: 50vw;
+            }
+
+            .anime-list .container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .anime-list .container .item {
+                background-color: #6fcb9f;
+                color: #ebe2f4;
+                color: white;
+                padding: 5rem;
+                width: 5rem;
+            }
         </style>
     </head>
 
     <body>
         <nav>
+            <p>{{ name }}</p>
             <ul>
                 <a href="/">
                     <li>about</li>

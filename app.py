@@ -8,8 +8,6 @@ import decouple
 import markdown
 import sqlite3
 
-# time stamp: 33:30
-
 db_connection = sqlite3.connect("./database.db")
 
 db_cursor = db_connection.cursor()
@@ -30,12 +28,18 @@ name = "Alexis"
 github_projects_url = "https://api.github.com/users/acumpstone/repos"
 projects_from_github = requests.get(github_projects_url).json()
 
+youtube_api_key = decouple.config("YOUTUBE_API_KEY", default=None)
+youtube_api_url = "https://www.googleapis.com/youtube/v3/channels?part=snippet, brandingSettings&id=UCZVzU1r-Z_1MAPOpZu0EaHA&key=" + youtube_api_key
+youtube_raw = requests.get(youtube_api_url).json()
+trailer_id = youtube_raw['items'][0]['brandingSettings']['channel']['unsubscribedTrailer']
+
+
 contact = decouple.config("CONTACT_FORM_API", default=None)
 
 projects = []
 blog_posts = []
 
-with os.scandir("blog") as it:
+with os.scandir("./blog") as it:
     for entry in it:
         if entry.name.endswith(".md") and entry.is_file():
             raw_post_date, post_name = entry.name.split("_")
@@ -87,7 +91,7 @@ def blog_listing_page(post_name):
 
 @app.route("/projects")
 def projects_page():
-    return render_template("projects.html", name=name, projects=projects)
+    return render_template("projects.html", name=name, projects=projects, trailer_id=trailer_id)
 
 @app.route("/contact")
 def contact_page():

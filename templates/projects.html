@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Projects{% endblock %}
 {% block content %}
-<h1>Projects</h1>
+<h1>Programming</h1>
 
 <ul class="projects">
     {% for project in projects %}
@@ -10,4 +10,12 @@
         </a>
     {% endfor %}
 </ul>
+
+<h1>Music</h1>
+
+<iframe width="424" height="238" src="https://www.youtube.com/embed/{{ trailer_id }}"
+title="YouTube video player" frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen></iframe>
+
 {% endblock %}
